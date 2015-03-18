@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <f:view>
+            <h:form id="pesquisa">
+                <p:panel header="Pesquisa Departamentos">
+                    <h:panelGrid columns="3">
+                        <h:outputLabel value="Escreva o nome do Departamento:"/>
+                        <p:autoComplete value="#{departamentoBean.departamento}" id="departamento" completeMethod="#{departamentoBean.listarPorNome}" var="d" itemLabel="#{d.nomeDepartamento}" itemValue="#{d}" converter="departamentoConverter" forceSelection="true"/>
+                        <h:commandButton value="Pesquisar" action="#">
+
+                        </h:commandButton>
+                    </h:panelGrid>
+
+                </p:panel>
+            </h:form>
+            <h:form>
+                <h:dataTable value="#{departamentoBean.deparamentosSeleccionados}" var="item">
+                    <h:column>
+                        <f:facet name="header">
+                            Id
+                        </f:facet>
+                        #{d.idDepartamento}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            Departamento
+                        </f:facet>
+                        #{d.nomeDepartamento}
+                    </h:column>
+                </h:dataTable>
+            </h:form>
+
+        </f:view>
+
+    </h:body>
+</html>
+

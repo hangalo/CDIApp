@@ -25,6 +25,7 @@ public class DepartamentoBean {
     private DepartamentoFacade departamentoFacade;
     private Departamento departamento;
     private List<Departamento> departamentos;
+    private List<Departamento> deparamentosSeleccionados;
 
     /**
      * Creates a new instance of Departamento
@@ -32,6 +33,7 @@ public class DepartamentoBean {
     public DepartamentoBean() {
         departamento = new Departamento();
         departamentos = new ArrayList<>();
+         deparamentosSeleccionados = new ArrayList<>();
     }
 
     public Departamento getDepartamento() {
@@ -59,10 +61,27 @@ public class DepartamentoBean {
 
     }
 
+    public List<Departamento> getDeparamentosSeleccionados() {
+        return deparamentosSeleccionados;
+    }
+
+    public void setDeparamentosSeleccionados(List<Departamento> deparamentosSeleccionados) {
+        this.deparamentosSeleccionados = deparamentosSeleccionados;
+    }
+
     public String eliminar() {
 
         departamentoFacade.remove(departamento);
         departamento = new Departamento();
         return null;
     }
+
+    public List<Departamento> listarPorNome(String nomeDepartamento) {
+        
+        System.out.println("Passou Muito bem:"+nomeDepartamento);
+        deparamentosSeleccionados= departamentoFacade.buscaDepartamentoByNome(nomeDepartamento);
+        return  deparamentosSeleccionados;
+        
+    }
+
 }
