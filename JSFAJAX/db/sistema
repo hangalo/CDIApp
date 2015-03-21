@@ -1,7 +1,7 @@
 -- MySQL Administrator dump 1.4
 --
 -- ------------------------------------------------------
--- Server version	5.6.17
+-- Server version	5.1.51-community
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -38,7 +38,7 @@ CREATE TABLE `departamento` (
 
 /*!40000 ALTER TABLE `departamento` DISABLE KEYS */;
 INSERT INTO `departamento` (`id_departamento`,`nome_departamento`) VALUES 
- (1,'Formação'),
+ (1,'Formacao'),
  (2,'Higiene e Limpeza'),
  (3,'Recursos Humanos'),
  (4,'Comunicacao e Imagem');
@@ -59,14 +59,87 @@ CREATE TABLE `funcionario` (
   PRIMARY KEY (`id_funcionario`),
   KEY `FK_funcionario_departamento` (`id_departamento`),
   CONSTRAINT `FK_funcionario_departamento` FOREIGN KEY (`id_departamento`) REFERENCES `departamento` (`id_departamento`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `funcionario`
 --
 
 /*!40000 ALTER TABLE `funcionario` DISABLE KEYS */;
+INSERT INTO `funcionario` (`id_funcionario`,`nome_funcionario`,`sobrenome_funcionario`,`salario_funcionario`,`id_departamento`) VALUES 
+ (1,'Bartolomeu','Hangalo',2000,1),
+ (2,'Julio','Hangalo',400,2),
+ (3,'Rosa','Hangalo',1000,1),
+ (4,'Jorge','Fernando',150,2),
+ (5,'Luzina','Hangalo',3000,2),
+ (6,'Zirita','Hangalo',3500,1),
+ (7,'Maria','Hangalo',2000,3),
+ (8,'Joaquim ','Hangalo',15000,2),
+ (9,'Andre','Hangalo',200,1),
+ (10,'Antonio','Hangalo',3400,2),
+ (11,'Luiza','Hangalo',3000,1),
+ (12,'Cassinda','Hangalo',3000,2),
+ (13,'Jamba','Hangalo',9000,3),
+ (14,'Feia','Hangalo',50000,2),
+ (15,'Bebucho','Hangalo',4000,1);
 /*!40000 ALTER TABLE `funcionario` ENABLE KEYS */;
+
+
+--
+-- Definition of table `item`
+--
+
+DROP TABLE IF EXISTS `item`;
+CREATE TABLE `item` (
+  `id` int(11) NOT NULL,
+  `title` varchar(100) NOT NULL,
+  `releaseyear` char(4) NOT NULL,
+  `genre` varchar(20) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `item`
+--
+
+/*!40000 ALTER TABLE `item` DISABLE KEYS */;
+INSERT INTO `item` (`id`,`title`,`releaseyear`,`genre`) VALUES 
+ (1,'The Godfather','1972','Drama'),
+ (2,'The Shawshank Redemption','1994','Drama'),
+ (3,'The Godfather: Part II','1974','Drama'),
+ (4,'The Lord of the Rings: The Return of the King','2003','Fantasy'),
+ (5,'The Lord of the Rings: The Two Towers','2002','Fantasy'),
+ (6,'Shindler\'s List','1998','Drama'),
+ (7,'Shichinin no samurai','1954','Action'),
+ (8,'Casablanca','1942','Drama'),
+ (9,'The Lord of the Rings: The Fellowship of the Ring','2001','Fantasy'),
+ (10,'Star Wars','1977','Sci-Fi'),
+ (11,'Citizen Kane','1941','Mystery'),
+ (12,'One Flew Over the Cuckoo\'s Nest','1975','Drama'),
+ (13,'Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb','1964','Comedy'),
+ (14,'Rear Window','1954','Thriller'),
+ (15,'Star Wars: Episode V - The Empire Strikes Back','1980','Sci-Fi'),
+ (16,'Raiders of the Lost Ark','1981','Action'),
+ (17,'The Usual Suspects','1995','Mystery'),
+ (18,'Pulp Fiction','1994','Crime'),
+ (19,'Memento','2000','Mystery'),
+ (20,'The Shutter Island','2010','Mystery');
+INSERT INTO `item` (`id`,`title`,`releaseyear`,`genre`) VALUES 
+ (21,'American Pie','1999','Comedy'),
+ (22,'The Battlefiled Earth','2000','Sci-Fi'),
+ (23,'The Nest','2002','Action'),
+ (24,'Scary Movie','2005','Comedy'),
+ (25,'State Of Play','2009','Mystery'),
+ (26,'Behind Enemy Lines','2001','Action'),
+ (27,'Live Flesh','1997','Drama'),
+ (28,'Shanghai','2010','Mystery'),
+ (29,'Almost Famous','2000','Drama'),
+ (30,'Home Alone','1990','Comedy'),
+ (31,'The Mystic River','2002','Drama'),
+ (32,'Peacemaker','1990','Sci-Fi'),
+ (33,'The Hangover','2009','Comedy'),
+ (34,'Shrek Forever After','2010','Fantasy');
+/*!40000 ALTER TABLE `item` ENABLE KEYS */;
 
 
 

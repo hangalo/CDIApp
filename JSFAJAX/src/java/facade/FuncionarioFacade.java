@@ -6,9 +6,11 @@
 package facade;
 
 import entities.Funcionario;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -16,6 +18,7 @@ import javax.persistence.PersistenceContext;
  */
 @Stateless
 public class FuncionarioFacade extends AbstractFacade<Funcionario> {
+
     @PersistenceContext(unitName = "JSFAJAXPU")
     private EntityManager em;
 
@@ -27,5 +30,19 @@ public class FuncionarioFacade extends AbstractFacade<Funcionario> {
     public FuncionarioFacade() {
         super(Funcionario.class);
     }
-    
+
+    public List<Funcionario> buscaFuncionario(int startingAt, int maxPerPage) {
+
+        Query query = em.createQuery("SELECT f FROM Funcionario f");
+        query.setFirstResult(startingAt);
+        query.setMaxResults(maxPerPage);
+        return query.getResultList();
+    }
+
+    public int countPlayersTotal() {
+        Query query = em.createQuery("SELECT COUNT(p) FROM Funcionario p");
+        Number result = (Number) query.getSingleResult();
+        return result.intValue();
+    }
+
 }
