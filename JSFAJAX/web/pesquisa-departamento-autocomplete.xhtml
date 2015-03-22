@@ -13,29 +13,37 @@
                 <p:panel header="Pesquisa Departamentos">
                     <h:panelGrid columns="3">
                         <h:outputLabel value="Escreva o nome do Departamento:"/>
-                        <p:autoComplete value="#{departamentoBean.departamento}" id="departamento" completeMethod="#{departamentoBean.listarPorNome}" var="d" itemLabel="#{d.nomeDepartamento}" itemValue="#{d}" converter="departamentoConverter" forceSelection="true"/>
-                        <h:commandButton value="Pesquisar" action="#">
-
+                        <p:autoComplete value="#{departamentoBean.departamento}" id="departamentoID" completeMethod="#{departamentoBean.listarPorNome}" var="d" itemLabel="#{d.nomeDepartamento}" itemValue="#{d}" converter="departamentoConverter" forceSelection="true"/>
+                        <h:commandButton value="Pesquisar" >
+                            <f:ajax execute="pesquisa:departamentoID" render="lista:dados"/>
                         </h:commandButton>
                     </h:panelGrid>
 
                 </p:panel>
+                <h:outputText id="departamentoSeleccionado" value="Selecionado: #{departamentoBean.departamento.idDepartamento} - #{departamentoBean.departamento.nomeDepartamento}" />
             </h:form>
-            <h:form>
-                <h:dataTable value="#{departamentoBean.deparamentosSeleccionados}" var="item">
-                    <h:column>
-                        <f:facet name="header">
-                            Id
-                        </f:facet>
-                        #{d.idDepartamento}
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            Departamento
-                        </f:facet>
-                        #{d.nomeDepartamento}
-                    </h:column>
-                </h:dataTable>
+            <h:form id="lista">
+
+
+                <h:form>
+                    <h1><h:outputText value="List"/></h1>
+                    <p:dataTable id="dados" value="#{departamentoBean.deparamentosSeleccionados}" var="item">
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="IdDepartamento"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idDepartamento}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="NomeDepartamento"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nomeDepartamento}"/>
+                        </p:column>
+                    </p:dataTable>
+                </h:form>
+
+                
             </h:form>
 
         </f:view>

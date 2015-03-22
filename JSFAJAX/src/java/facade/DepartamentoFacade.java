@@ -34,6 +34,7 @@ public class DepartamentoFacade extends AbstractFacade<Departamento> {
     public List<Departamento> buscaDepartamentoByNome(String nomeDepartamento) {
         Query query = em.createQuery("SELECT d FROM Departamento d WHERE upper(d.nomeDepartamento) like upper(:nomeDepartamento)");
         query.setParameter("nomeDepartamento", "%" + nomeDepartamento + "%");
+        
         return query.getResultList();
 
     }

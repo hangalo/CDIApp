@@ -33,7 +33,7 @@ public class DepartamentoBean {
     public DepartamentoBean() {
         departamento = new Departamento();
         departamentos = new ArrayList<>();
-         deparamentosSeleccionados = new ArrayList<>();
+        deparamentosSeleccionados = new ArrayList<>();
     }
 
     public Departamento getDepartamento() {
@@ -77,11 +77,15 @@ public class DepartamentoBean {
     }
 
     public List<Departamento> listarPorNome(String nomeDepartamento) {
-        
-        System.out.println("Passou Muito bem:"+nomeDepartamento);
-        deparamentosSeleccionados= departamentoFacade.buscaDepartamentoByNome(nomeDepartamento);
-        return  deparamentosSeleccionados;
-        
+
+        System.out.println("Passou Muito bem:" + nomeDepartamento);
+        deparamentosSeleccionados = departamentoFacade.buscaDepartamentoByNome(nomeDepartamento);
+        for (Departamento d : deparamentosSeleccionados) {
+
+            System.out.println("Departamento" + d.getNomeDepartamento());
+        }
+        return deparamentosSeleccionados;
+
     }
 
 }
