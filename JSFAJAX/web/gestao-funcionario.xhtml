@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <f:view>
+
+
+            <h:form id="form">
+                <h1><h:outputText value="Create/Edit"/></h1>
+                <p:panelGrid columns="2">
+                   <p:outputLabel value="IdDepartamento:" for="idDepartamento" />
+                   <p:selectOneMenu id="idDepartamento" value="#{funcionarioBean.funcionarioSeleccionado.idDepartamento}" required="true" valueChangeListener="#{funcionarioBean.mudancaValor}" requiredMessage="The IdDepartamento field is required." converter="departamentoConverter">
+                        <f:selectItems value="#{funcionarioBean.departamentos}" itemLabel="#{departamento}" itemValue="#{departamento}"/>
+                    </p:selectOneMenu>
+                </p:panelGrid>
+                
+                
+                <h:commandButton value="Salvar">
+                    <f:ajax execute="form:idDepartamento "/>
+                </h:commandButton>
+                </h:form>
+        </f:view>
+
+    </h:body>
+</html>
+

@@ -11,7 +11,7 @@
        <h:form id="form">
            <p:dataTable var="fc" value="#{funcionarioBean.funcionarios}" paginator="true" rows="10"
                  paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
-                 rowsPerPageTemplate="5,10,15" selectionMode="single" selection="#{funcionarioBean.funcionarioSeleccionado}" id="fcTable" lazy="true">
+                 rowsPerPageTemplate="5,10,15" selectionMode="single" selection="#{funcionarioBean.funcionarioSeleccionado}" id="fcTable" lazy="true" paginatorPosition="bottom">
         <p:ajax event="rowSelect" listener="#{funcionarioBean.onRowSelect}" update=":form:fcDetail" oncomplete="PF('fcDialog').show()" />
        
         <p:column headerText="Id" sortBy="#{fc.idFuncionario}" filterBy="#{fc.idFuncionario}">
