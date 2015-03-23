@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+       <h:form id="form">
+           <p:dataTable var="fc" value="#{funcionarioBean.funcionarios}" paginator="true" rows="10"
+                 paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+                 rowsPerPageTemplate="5,10,15" selectionMode="single" selection="#{funcionarioBean.funcionarioSeleccionado}" id="fcTable" lazy="true">
+        <p:ajax event="rowSelect" listener="#{funcionarioBean.onRowSelect}" update=":form:fcDetail" oncomplete="PF('fcDialog').show()" />
+       
+        <p:column headerText="Id" sortBy="#{fc.idFuncionario}" filterBy="#{fc.idFuncionario}">
+            <h:outputText value="#{fc.idFuncionario}" />
+        </p:column>
+        <p:column headerText="Nome" sortBy="#{fc.nomeFuncionario}" filterBy="#{fc.nomeFuncionario}">
+            <h:outputText value="#{fc.nomeFuncionario}" />
+        </p:column>
+        <p:column headerText="Sobrenome" sortBy="#{fc.sobrenomeFuncionario}" filterBy="#{fc.sobrenomeFuncionario}">
+            <h:outputText value="#{fc.sobrenomeFuncionario}" />
+        </p:column>
+        <p:column headerText="Salario" sortBy="#{fc.salarioFuncionario}" filterBy="#{fc.salarioFuncionario}">
+            <h:outputText value="#{fc.salarioFuncionario}" />
+            
+        </p:column>
+        <p:column headerText="Departamento" sortBy="#{fc.idDepartamento.nomeDepartamento}" filterBy="#{fc.idDepartamento.nomeDepartamento}">
+            <h:outputText value="#{fc.idDepartamento.nomeDepartamento}" />
+            
+        </p:column>
+    </p:dataTable>
+ 
+    <p:dialog header="Funcionario Detail" widgetVar="fcDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+        <p:outputPanel id="fcDetail" style="text-align:center;">
+            <p:panelGrid  columns="2" rendered="#{not empty funcionarioBean.funcionarioSeleccionado}" columnClasses="label,value">
+             
+ 
+                <h:outputText value="Id:" />
+                <h:outputText value="#{funcionarioBean.funcionarioSeleccionado.idFuncionario}" />
+ 
+                <h:outputText value="Nome" />
+                <h:outputText value="#{funcionarioBean.funcionarioSeleccionado.nomeFuncionario}" />
+ 
+                
+            </p:panelGrid>
+        </p:outputPanel>
+    </p:dialog>
+</h:form>
+    </h:body>
+</html>
+
